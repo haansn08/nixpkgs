@@ -15,19 +15,26 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "qxmpp";
-  version = "1.16.1";
+  version = "1.16.2";
+
+  outputs = [
+    "out"
+    "doc"
+  ];
 
   src = fetchFromGitLab {
     domain = "invent.kde.org";
     owner = "libraries";
     repo = "qxmpp";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-JuGSLi0oqlUTbJnjlqd9qo0Dk2yCY1hfryQy0CuEjLo=";
+    hash = "sha256-SI8ANd3tsdDLwBbqVnvbPy4BafBmM2PdaYEbhZ9Wl9M=";
   };
 
   nativeBuildInputs = [
     cmake
     kdePackages.wrapQtAppsHook
+    kdePackages.extra-cmake-modules
+    (kdePackages.qttools.override { withClang = true; })
   ]
   ++ lib.optionals (withGstreamer || withOmemo) [
     pkg-config
@@ -48,7 +55,7 @@ stdenv.mkDerivation (finalAttrs: {
       libomemo-c
     ];
   cmakeFlags = [
-    (lib.cmakeBool "BUILD_DOCUMENTATION" false)
+    (lib.cmakeBool "BUILD_DOCUMENTATION" true)
     (lib.cmakeBool "BUILD_EXAMPLES" false)
     (lib.cmakeBool "BUILD_TESTING" finalAttrs.doCheck)
     (lib.cmakeBool "BUILD_OMEMO" withOmemo)
@@ -62,6 +69,8 @@ stdenv.mkDerivation (finalAttrs: {
     "tst_QXmppIceConnection"
     "tst_QXmppTransferManager"
   ];
+
+  DOC_DESTDIR = "$outputDoc";
 
   meta = {
     description = "Cross-platform C++ XMPP client and server library";
