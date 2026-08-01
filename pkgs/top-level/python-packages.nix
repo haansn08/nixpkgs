@@ -14235,6 +14235,8 @@ self: super: with self; {
 
   pychromecast = callPackage ../development/python-modules/pychromecast { };
 
+  pychromedevtools = callPackage ../development/python-modules/pychromedevtools { };
+
   pycifrw = callPackage ../development/python-modules/pycifrw { };
 
   pycketcasts = callPackage ../development/python-modules/pycketcasts { };
