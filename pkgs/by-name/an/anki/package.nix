@@ -31,18 +31,19 @@
 
   mesa,
   imagemagick,
+  pre-commit,
 }:
 
 let
   yarn-berry = yarn-berry_4;
 
   pname = "anki";
-  version = "26.05";
-  rev = "e64c6b1aee3e8d668fb8bbe084beada8e070d985";
+  version = "26.08";
+  rev = "666c2c64d4a1772c03948f5b667438da63ddaa76";
 
-  srcHash = "sha256-LJNDJsRhyvngtcmKzHJ6VFFQirCZRqwuKTcSThu+1mk=";
-  cargoHash = "sha256-A5bxKStcuK7Ic8g4uueE5ipSttYvOctaUamEwwqVvJw=";
-  yarnHash = "sha256-fVsKXY8wCFdtUIjVg4zOLtdsTh1C3k5MbY6VKN4QnrU=";
+  srcHash = "sha256-0sqtKiMqw7MLXVFSCT1sKX/VO7q5BY63pJP5OnCE2zo=";
+  cargoHash = "sha256-LQ5uD86ZOKXy9vGbTqPBi3Q57PZEjwQkbHR94QAIVMg=";
+  yarnHash = "sha256-bOgiZImraPXR/gVk9MB3o9GScMGvLvdhc9mLAaCA4IE=";
   pythonDeps =
     with python3Packages;
     [
@@ -93,6 +94,52 @@ let
       soupsieve
       urllib3
       werkzeug
+      annotated-doc
+      anyio
+      arrow
+      asgiref
+      binaryornot
+      briefcase
+      build
+      cfgv
+      chardet
+      cogapp
+      complexipy
+      cookiecutter
+      coverage
+      distlib
+      filelock
+      gitdb
+      gitpython
+      h11
+      httpcore
+      httpx
+      identify
+      iniconfig
+      markdown-it-py
+      mdurl
+      mock
+      mypy
+      mypy-extensions
+      nodeenv
+      platformdirs
+pluggy
+protobuf
+psutil
+pygments
+pyproject-hooks
+pyqt6
+pyqt6-sip
+pyqt6-webengine
+pytest
+pytest-mock
+python-dateutil
+python-discovery
+python-slugify
+pyyaml
+mypy-protobuf
+pre-commit
+pychromedevtools
     ]
     ++ lib.optionals stdenv.hostPlatform.isDarwin [
       anki-audio
@@ -102,7 +149,7 @@ let
   src = fetchFromGitHub {
     owner = "ankitects";
     repo = "anki";
-    rev = version;
+    tag = version;
     hash = srcHash;
     fetchSubmodules = true;
   };
@@ -365,6 +412,7 @@ python3Packages.buildPythonApplication (finalAttrs: {
       euank
       junestepp
       oxij
+      haansn08
     ];
   };
 })
