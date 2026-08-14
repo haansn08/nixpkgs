@@ -9817,6 +9817,8 @@ self: super: with self; {
   llguidance = callPackage ../development/python-modules/llguidance { };
 
   llm = callPackage ../development/python-modules/llm { };
+  
+  pyreadr = callPackage ../development/python-modules/pyreadr { };
 
   llm-anthropic = callPackage ../development/python-modules/llm-anthropic { };
 
