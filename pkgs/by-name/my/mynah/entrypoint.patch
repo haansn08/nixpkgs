@@ -1,0 +1,11 @@
+--- a/__main__.py
++++ b/__main__.py
+@@ -24,7 +24,7 @@
+ from ui.app import App
+ 
+ 
+-if __name__ == "__main__":
++def run():
+     os.environ["GTK_CSD"] = "0"  # Always use OS-default decorations
+     if DEV:
+         faulthandler.enable()
