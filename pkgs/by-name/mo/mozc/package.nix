@@ -20,13 +20,13 @@ let
 in
 buildBazelPackage rec {
   pname = "mozc";
-  version = "2.30.5544.102"; # make sure to update protobuf if needed
+  version = "3.34.6239"; # make sure to update protobuf if needed
 
   src = fetchFromGitHub {
     owner = "google";
     repo = "mozc";
     tag = version;
-    hash = "sha256-w0bjoMmq8gL7DSehEG7cKqp5e4kNOXnCYLW31Zl9FRs=";
+    hash = "sha256-m7hxJafQVXIaV3l6s5Xix8liXf4NN18Jwv0CzTrdYqM=";
     fetchSubmodules = true;
   };
 
@@ -86,6 +86,10 @@ buildBazelPackage rec {
     substituteInPlace src/config.bzl \
       --replace-fail "/usr/bin/xdg-open" "${xdg-utils}/bin/xdg-open" \
       --replace-fail "/usr" "$out"
+    # Qt >= 6.10 uic rejects class names with a leading "::"
+    substituteInPlace src/gui/dictionary_tool/dictionary_tool.ui \
+      --replace-fail '"::mozc::' '"mozc::' \
+      --replace-fail '>::mozc::' '>mozc::'
     substituteInPlace src/WORKSPACE.bazel \
       --replace-fail "https://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip" "file://${jp-zip-codes}/ken_all.zip" \
       --replace-fail "https://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip" "file://${jp-zip-codes}/jigyosyo.zip"
