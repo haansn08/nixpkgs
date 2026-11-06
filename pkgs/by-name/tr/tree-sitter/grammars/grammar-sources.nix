@@ -2780,6 +2780,14 @@
     meta.license = lib.licenses.mit;
   };
 
+  sieve = {
+    version = "0-unstable-2025-09-18";
+    url = "github:TLATER/tree-sitter-sieve";
+    rev = "d4971e9eb867ec380b02e1f6065bbfaa72d174fb";
+    hash = "sha256-SPC4oBRGM0LmDbHDXVdBKsSOsTfkOiD5Q2yWUVCKM5o=";
+    meta.license = lib.licenses.mit;
+  };
+
   slang = {
     version = "0.3.1-unstable-2025-09-01";
     url = "github:tree-sitter-grammars/tree-sitter-slang";
